@@ -1,0 +1,20 @@
+<div class="endpoints">
+   
+	<table border = "1" style="text-align: center;">
+
+		<tr style="font-weight: bold;">
+			<th>FILE NAME</th>
+			<th>FILE ID</th>
+			<th>ACTION</th>	
+		</tr>
+		<tr ng-repeat="file in files" class="endpoint-table">
+			<td> {{ file.name }} </td>
+			<td> {{ file.id }} </td>
+
+			<td>
+				<button ng-click='viewFile(file.id)'>VIEW</button>
+				<button ng-click='removeFile(file.id)'>DELETE</button>
+			</td>
+		</tr>
+	</table>
+</div>

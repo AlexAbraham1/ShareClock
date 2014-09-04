@@ -1,0 +1,170 @@
+@import url(//fonts.googleapis.com/css?family=Lato:700);
+@import url(ng-quick-date.css);
+@import url(ng-prettyjson.min.css);
+@import url(bootstrap.css);
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
+@import url(//mgcrea.github.io/angular-strap/styles/angular-motion.min.css);
+@import url(//mgcrea.github.io/angular-strap/styles/bootstrap-additions.min.css);
+@import url(//mgcrea.github.io/angular-strap/styles/libraries.min.css);
+@import url(//mgcrea.github.io/angular-strap/styles/main.min.css);
+html,
+body {
+  height: 100%;
+}
+body {
+  width: 100%;
+  /* needed for FF */
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  color: #999;
+}
+h2 {
+  text-align: center;
+}
+div.endpoints {
+  margin: 1em auto;
+  text-align: center;
+  align: center;
+  margin-top: 50px;
+}
+form > input,
+select,
+textarea,
+button {
+  background: #fff;
+  font-size: 1em;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: #8c8a8b;
+}
+div.objects > .jsonForm,
+div.endpoints > .jsonForm {
+  margin-left: 300px;
+  margin-top: 10px;
+  min-width: 375px;
+  position: relative;
+  display: inline-block;
+}
+div.objects > .jsonForm > textarea,
+div.endpoints > .jsonForm > textarea {
+  width: 375px;
+  height: 250px;
+}
+div.objects > .jsonForm > span.buttons,
+div.endpoints > .jsonForm > span.buttons {
+  display: block;
+  text-align: right;
+}
+div.uibootstrap > table {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 115%;
+  width: auto;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.uibootstrap > table > tbody > tr > th {
+  background-color: #5c8aff;
+  font-weight: bold;
+  color: white;
+  padding: 10px 5px;
+  text-align: center;
+}
+div.uibootstrap > table > tbody > tr > td {
+  padding: 2px 10px;
+}
+/*TABLE*/
+div.objects > table,
+div.endpoints > table,
+div.dashboard > table {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 115%;
+  width: auto;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.objects > table > tbody > tr > th,
+div.endpoints > table > tbody > tr > th,
+div.dashboard > table > tbody > tr > th {
+  background-color: #70c469;
+  font-weight: normal;
+  color: white;
+  padding: 20px 15px;
+  text-align: center;
+}
+div.objects > table > tbody > tr > td,
+div.endpoints > table > tbody > tr > td,
+div.dashboard > table > tbody > tr > td {
+  padding: 2px 10px;
+}
+.filter {
+  margin-left: auto;
+  margin-right: auto;
+}
+.calendar {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 80%;
+  width: auto;
+  background-color: #01c469;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+}
+.calendar .quickdate-calendar th {
+  background-color: red;
+}
+/*AngularJS animations*/
+.object-table.ng-enter,
+.object-table.ng-leave,
+.object-table.ng-move,
+.endpoint-table.ng-enter,
+.endpoint-table.ng-leave,
+.endpoint-table.ng-move,
+.dashboard-table.ng-enter,
+.dashboard-table.ng-leave,
+.dashboard-table.ng-move {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+.object-table.ng-enter,
+.object-table.ng-move,
+.endpoint-table.ng-enter,
+.endpoint-table.ng-move,
+.dashboard-table.ng-enter,
+.dashboard-table.ng-move {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+.object-table.ng-move.ng-move-active,
+.object-table.ng-enter.ng-enter-active,
+.endpoint-table.ng-move.ng-move-active,
+.endpoint-table.ng-enter.ng-enter-active,
+.dashboard-table.ng-move.ng-move-active,
+.dashboard-table.ng-enter.ng-enter-active {
+  opacity: 1;
+  height: 120px;
+}
+.object-table.ng-leave,
+.endpoint-table.ng-leave,
+.dashboard-table.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+.object-table.ng-leave.ng-leave-active,
+.endpoint-table.ng-leave.ng-leave-active,
+.dashboard-table.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4YWJyYWhhbS9EZXZlbG9wbWVudC9XZWIgRGV2ZWxvcG1lbnQvU2hhcmVDbG9jay9hcHAvc3JjL2xlc3Mvc2hhcmVjbG9jay5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFZQTtBQUFNO0VBQU8sWUFBQTs7QUFFYjtFQUNDLFdBQUE7O0VBQ0EsU0FBQTtFQUNBLGFBQVksa0JBQVo7RUFDQSxrQkFBQTtFQUNBLFdBQUE7O0FBR0Q7RUFDQyxrQkFBQTs7QUFHRCxHQUFHO0VBQ0YsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxnQkFBQTs7QUFHRCxJQUFLO0FBQ0Q7QUFDQTtBQUNBO0VBQ0QsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBWSx1QkFBdUIsd0JBQXdCLDhDQUEzRDtFQUNBLGdCQUFBO0VBQ0EsY0FBQTs7QUFHSCxHQUFHLFFBQVM7QUFDWixHQUFHLFVBQVc7RUFFYixrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBOztBQVBELEdBQUcsUUFBUyxZQVNYO0FBUkQsR0FBRyxVQUFXLFlBUWI7RUFDQyxZQUFBO0VBQ0EsYUFBQTs7QUFYRixHQUFHLFFBQVMsWUFjWCxPQUFNO0FBYlAsR0FBRyxVQUFXLFlBYWIsT0FBTTtFQUNMLGNBQUE7RUFDQSxpQkFBQTs7QUFJRixHQUFHLFlBQWE7RUFFZix1QkFBQTtFQUNBLG1DQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTs7QUFSRCxHQUFHLFlBQWEsUUFVZixRQUFRLEtBQUs7RUFDWix5QkFBQTtFQUNBLGlCQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7O0FBZkYsR0FBRyxZQUFhLFFBa0JmLFFBQVEsS0FBSztFQUNaLGlCQUFBOzs7QUFNRixHQUFHLFFBQVM7QUFDWixHQUFHLFVBQVc7QUFDZCxHQUFHLFVBQVc7RUFFYix1QkFBQTtFQUNBLG1DQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTs7QUFWRCxHQUFHLFFBQVMsUUFZWCxRQUFRLEtBQUs7QUFYZCxHQUFHLFVBQVcsUUFXYixRQUFRLEtBQUs7QUFWZCxHQUFHLFVBQVcsUUFVYixRQUFRLEtBQUs7RUFDWix5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0Esa0JBQUE7O0FBakJGLEdBQUcsUUFBUyxRQW9CWCxRQUFRLEtBQUs7QUFuQmQsR0FBRyxVQUFXLFFBbUJiLFFBQVEsS0FBSztBQWxCZCxHQUFHLFVBQVcsUUFrQmIsUUFBUSxLQUFLO0VBQ1osaUJBQUE7O0FBS0Y7RUFDQyxpQkFBQTtFQUNBLGtCQUFBOztBQUdEO0VBTUMsdUJBQUE7RUFDQSxtQ0FBQTtFQUNBLGNBQUE7RUFDQSxXQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTs7QUFiRCxTQUVDLG9CQUFvQjtFQUNuQixxQkFBQTs7O0FBZ0JGLGFBQWE7QUFDYixhQUFhO0FBQ2IsYUFBYTtBQUNiLGVBQWU7QUFDZixlQUFlO0FBQ2YsZUFBZTtBQUNmLGdCQUFnQjtBQUNoQixnQkFBZ0I7QUFDaEIsZ0JBQWdCO0VBQ2QsbUNBQUE7RUFDQSxnQ0FBQTtFQUNBLDhCQUFBO0VBQ0EsMkJBQUE7O0FBR0YsYUFBYTtBQUNiLGFBQWE7QUFDYixlQUFlO0FBQ2YsZUFBZTtBQUNmLGdCQUFnQjtBQUNoQixnQkFBZ0I7RUFDZCxVQUFBO0VBQ0EsU0FBQTtFQUNBLGdCQUFBOztBQUdGLGFBQWEsUUFBUTtBQUNyQixhQUFhLFNBQVM7QUFDdEIsZUFBZSxRQUFRO0FBQ3ZCLGVBQWUsU0FBUztBQUN4QixnQkFBZ0IsUUFBUTtBQUN4QixnQkFBZ0IsU0FBUztFQUN2QixVQUFBO0VBQ0EsYUFBQTs7QUFHRixhQUFhO0FBQ2IsZUFBZTtBQUNmLGdCQUFnQjtFQUNkLFVBQUE7RUFDQSxnQkFBQTs7QUFHRixhQUFhLFNBQVM7QUFDdEIsZUFBZSxTQUFTO0FBQ3hCLGdCQUFnQixTQUFTO0VBQ3ZCLFVBQUE7RUFDQSxTQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBIn0= */
