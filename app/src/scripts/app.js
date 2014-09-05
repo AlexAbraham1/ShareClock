@@ -43,7 +43,7 @@ shareclock.directive('updateTitle', function($rootScope, $timeout) {
 });
 
 
-shareclock.config(require("./routes/MainRoutes")); 
+shareclock.config(require("./routes/MainRoutes"));
 
 
 shareclock.controller('ObjectCtrl', ["$scope", "ObjectService", "$rootScope", "$cookies", require("./controllers/ObjectCtrl")]);
@@ -51,7 +51,9 @@ shareclock.controller('EndpointCtrl', ["$scope", "EndpointService", "$rootScope"
 
 shareclock.controller('DashboardCtrl', ["$scope", "DashboardService", "$rootScope", "$cookies", "EndpointTestService", "ObjectService", "EndpointService", "$modal", "$timeout", require("./controllers/DashboardCtrl")]);
 
-shareclock.controller('FilesCtrl', ["$scope", "FilesService", require("./controllers/FilesCtrl")]);
+shareclock.controller('HomeCtrl', ["$scope", "FilesService", require("./controllers/HomeCtrl")]);
+shareclock.controller('FileCtrl', ["$scope", "FilesService", "$stateParams", require("./controllers/FileCtrl")]);
+
 
 shareclock.service('DashboardService', ["$resource", "$q", "$rootScope", require("./services/DashboardService")]);
 shareclock.service('ObjectService', ["$resource", "$q", "$rootScope", require("./services/ObjectService")]);

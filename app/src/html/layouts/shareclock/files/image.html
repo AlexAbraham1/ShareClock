@@ -1,0 +1,13 @@
+<div class="file">
+	<a href="{{filePath}}"><img src="{{filePath}}" alt="{{file.name}}"/></a>
+	<h1>{{file.name}}</h1>
+	<p>{{file.dimensions[0]}} x {{file.dimensions[1]}}</p>
+	<div class="buttons">
+		<a href="{{filePath}}" class="downloadButton" download>DOWNLOAD</a>
+		
+		<span style="margin-left: 30px;"><a ng-click='shareFile()' class="shareButton" download>SHARE</a></span>
+
+		<span style="margin-left: 30px;"><a ng-click='removeFile()' class="deleteButton">DELETE</a></span>
+	
+	</div>
+</div>

@@ -77,7 +77,7 @@ class FileController extends BaseController {
 		$inputFile = Input::file('file'); // your file upload input field in the form should be named 'file'
 
 		try {
-			$response = $this->file->uploadFile($inputFile);
+			$file['data'] = $this->file->uploadFile($inputFile);
 		} catch (Exception $e) {
 
 			$message = $e->getMessage();
@@ -86,7 +86,7 @@ class FileController extends BaseController {
 
 		}
 
-		return $response;
+		return Response::json($file);
 	}
 
 	public function deleteFile($id)

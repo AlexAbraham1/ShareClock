@@ -19,7 +19,50 @@ class File extends Eloquent implements FileRepository {
 		$file = $this->find($id);
 
 		if ($file != null) {
-			return $file;
+
+			$data = [];
+
+			$path = $file->path . '/' . $file->name;
+
+			$fullpath = '/' . $path;
+
+			$name = $file->name;
+
+			$extension = $file->extension;
+
+			$timeout = $file->timeout;
+
+			if ($timeout) {
+				$remainder = strtotime($timeout) % 60; 
+
+				$timeout = (Carbon::createFromTimestamp(strtotime($timeout))->addSeconds(60-$remainder));
+
+				$seconds = $timeout->diffInSeconds(Carbon::now());
+			} else {
+				$seconds = 0;
+			}
+			$data["id"] = $file->id;
+			$data["path"] = $fullpath;
+			$data["name"] = $name;
+			$data["seconds"] = $seconds;
+			$data["filetype"] = $file->filetype;
+
+			if (exif_imagetype($path)) {
+
+				$dimensions = getimagesize($path);
+				$data["dimensions"] = $dimensions;
+
+			} else if ($extension == "pdf") {
+
+			} else {
+
+			}
+
+			return $data;
+
+
+
+
 		} else {
 			throw new Exception("Sorry, File ID Not Found"); die();
 		}
@@ -111,14 +154,26 @@ class File extends Eloquent implements FileRepository {
 				$newFile->timeout = $timeout;
 			}
 			
-			
+			if (exif_imagetype($file)) {
+
+				$newFile->filetype = "image";
+
+			} else if ($extension == "pdf") {
+
+				$newFile->filetype = "pdf";
+
+			} else {
+
+				$newFile->filetype = "other";
+				
+			}
 
 			$uploadSuccess = Input::file('file')->move($destinationPath, $filename);
 			 
 			if( $uploadSuccess ) {
 				$newFile->save();
 				$url = 'files/' . $newFile->id;
-				return Redirect::to($url);
+				return $newFile;
 			} else {
 			   throw new Exception('Something went wrong!'); die();
 			}

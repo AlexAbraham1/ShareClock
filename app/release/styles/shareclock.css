@@ -19,15 +19,27 @@ body {
   font-family: 'Lato', sans-serif;
   text-align: center;
   color: #999;
+  /*FF*/
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 h2 {
   text-align: center;
 }
+.UploadBox {
+  width: 500px;
+  margin: 0px auto;
+  /* Right and left margin widths set to "auto" */
+  text-align: left;
+  /* Counteract to IE5/Win Hack */
+  padding: 15px;
+  border: 1px dashed #333;
+  background-color: #eee;
+}
 div.endpoints {
   margin: 1em auto;
   text-align: center;
-  align: center;
-  margin-top: 50px;
 }
 form > input,
 select,
@@ -57,30 +69,8 @@ div.endpoints > .jsonForm > span.buttons {
   display: block;
   text-align: right;
 }
-div.uibootstrap > table {
-  font-family: sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 115%;
-  width: auto;
-  overflow: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-div.uibootstrap > table > tbody > tr > th {
-  background-color: #5c8aff;
-  font-weight: bold;
-  color: white;
-  padding: 10px 5px;
-  text-align: center;
-}
-div.uibootstrap > table > tbody > tr > td {
-  padding: 2px 10px;
-}
 /*TABLE*/
-div.objects > table,
-div.endpoints > table,
-div.dashboard > table {
-  font-family: sans-serif;
+.fileTable {
   -webkit-font-smoothing: antialiased;
   font-size: 115%;
   width: auto;
@@ -88,83 +78,194 @@ div.dashboard > table {
   margin-left: auto;
   margin-right: auto;
 }
-div.objects > table > tbody > tr > th,
-div.endpoints > table > tbody > tr > th,
-div.dashboard > table > tbody > tr > th {
+.fileTable > thead > tr > th {
   background-color: #70c469;
   font-weight: normal;
   color: white;
   padding: 20px 15px;
   text-align: center;
 }
-div.objects > table > tbody > tr > td,
-div.endpoints > table > tbody > tr > td,
-div.dashboard > table > tbody > tr > td {
+.fileTable > tbody > tr > td {
   padding: 2px 10px;
 }
-.filter {
-  margin-left: auto;
-  margin-right: auto;
-}
-.calendar {
-  font-family: sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 80%;
-  width: auto;
-  background-color: #01c469;
-  font-weight: normal;
-  color: white;
+/*File View*/
+div.file {
+  margin: 1em auto;
   text-align: center;
 }
-.calendar .quickdate-calendar th {
-  background-color: red;
+div.file h1 {
+  font-size: 32px;
+  margin: 16px 0 0 0;
 }
-/*AngularJS animations*/
-.object-table.ng-enter,
-.object-table.ng-leave,
-.object-table.ng-move,
-.endpoint-table.ng-enter,
-.endpoint-table.ng-leave,
-.endpoint-table.ng-move,
-.dashboard-table.ng-enter,
-.dashboard-table.ng-leave,
-.dashboard-table.ng-move {
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all;
-  transition: 0.5s linear all;
+div.file img {
+  max-width: 80%;
+  max-height: 300px;
 }
-.object-table.ng-enter,
-.object-table.ng-move,
-.endpoint-table.ng-enter,
-.endpoint-table.ng-move,
-.dashboard-table.ng-enter,
-.dashboard-table.ng-move {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
+.downloadButton {
+  -moz-box-shadow: 0px 10px 14px -7px #3e7327;
+  -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+  box-shadow: 0px 10px 14px -7px #3e7327;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+  background: -moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: -webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: -o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: -ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352', GradientType=0);
+  background-color: #77b55a;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #4b8f29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 17px 35px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #5b8a3c;
 }
-.object-table.ng-move.ng-move-active,
-.object-table.ng-enter.ng-enter-active,
-.endpoint-table.ng-move.ng-move-active,
-.endpoint-table.ng-enter.ng-enter-active,
-.dashboard-table.ng-move.ng-move-active,
-.dashboard-table.ng-enter.ng-enter-active {
-  opacity: 1;
-  height: 120px;
+.downloadButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+  background: -moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: -webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: -o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: -ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a', GradientType=0);
+  background-color: #72b352;
 }
-.object-table.ng-leave,
-.endpoint-table.ng-leave,
-.dashboard-table.ng-leave {
-  opacity: 1;
-  overflow: hidden;
+.downloadButton:active {
+  position: relative;
+  top: 1px;
 }
-.object-table.ng-leave.ng-leave-active,
-.endpoint-table.ng-leave.ng-leave-active,
-.dashboard-table.ng-leave.ng-leave-active {
-  opacity: 0;
-  height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+.downloadButton {
+  -moz-box-shadow: 0px 10px 14px -7px #3e7327;
+  -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+  box-shadow: 0px 10px 14px -7px #3e7327;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+  background: -moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: -webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: -o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: -ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+  background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352', GradientType=0);
+  background-color: #77b55a;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #4b8f29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 17px 35px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #5b8a3c;
 }
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4YWJyYWhhbS9EZXZlbG9wbWVudC9XZWIgRGV2ZWxvcG1lbnQvU2hhcmVDbG9jay9hcHAvc3JjL2xlc3Mvc2hhcmVjbG9jay5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFZQTtBQUFNO0VBQU8sWUFBQTs7QUFFYjtFQUNDLFdBQUE7O0VBQ0EsU0FBQTtFQUNBLGFBQVksa0JBQVo7RUFDQSxrQkFBQTtFQUNBLFdBQUE7O0FBR0Q7RUFDQyxrQkFBQTs7QUFHRCxHQUFHO0VBQ0YsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxnQkFBQTs7QUFHRCxJQUFLO0FBQ0Q7QUFDQTtBQUNBO0VBQ0QsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBWSx1QkFBdUIsd0JBQXdCLDhDQUEzRDtFQUNBLGdCQUFBO0VBQ0EsY0FBQTs7QUFHSCxHQUFHLFFBQVM7QUFDWixHQUFHLFVBQVc7RUFFYixrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBOztBQVBELEdBQUcsUUFBUyxZQVNYO0FBUkQsR0FBRyxVQUFXLFlBUWI7RUFDQyxZQUFBO0VBQ0EsYUFBQTs7QUFYRixHQUFHLFFBQVMsWUFjWCxPQUFNO0FBYlAsR0FBRyxVQUFXLFlBYWIsT0FBTTtFQUNMLGNBQUE7RUFDQSxpQkFBQTs7QUFJRixHQUFHLFlBQWE7RUFFZix1QkFBQTtFQUNBLG1DQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTs7QUFSRCxHQUFHLFlBQWEsUUFVZixRQUFRLEtBQUs7RUFDWix5QkFBQTtFQUNBLGlCQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7O0FBZkYsR0FBRyxZQUFhLFFBa0JmLFFBQVEsS0FBSztFQUNaLGlCQUFBOzs7QUFNRixHQUFHLFFBQVM7QUFDWixHQUFHLFVBQVc7QUFDZCxHQUFHLFVBQVc7RUFFYix1QkFBQTtFQUNBLG1DQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTs7QUFWRCxHQUFHLFFBQVMsUUFZWCxRQUFRLEtBQUs7QUFYZCxHQUFHLFVBQVcsUUFXYixRQUFRLEtBQUs7QUFWZCxHQUFHLFVBQVcsUUFVYixRQUFRLEtBQUs7RUFDWix5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0Esa0JBQUE7O0FBakJGLEdBQUcsUUFBUyxRQW9CWCxRQUFRLEtBQUs7QUFuQmQsR0FBRyxVQUFXLFFBbUJiLFFBQVEsS0FBSztBQWxCZCxHQUFHLFVBQVcsUUFrQmIsUUFBUSxLQUFLO0VBQ1osaUJBQUE7O0FBS0Y7RUFDQyxpQkFBQTtFQUNBLGtCQUFBOztBQUdEO0VBTUMsdUJBQUE7RUFDQSxtQ0FBQTtFQUNBLGNBQUE7RUFDQSxXQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTs7QUFiRCxTQUVDLG9CQUFvQjtFQUNuQixxQkFBQTs7O0FBZ0JGLGFBQWE7QUFDYixhQUFhO0FBQ2IsYUFBYTtBQUNiLGVBQWU7QUFDZixlQUFlO0FBQ2YsZUFBZTtBQUNmLGdCQUFnQjtBQUNoQixnQkFBZ0I7QUFDaEIsZ0JBQWdCO0VBQ2QsbUNBQUE7RUFDQSxnQ0FBQTtFQUNBLDhCQUFBO0VBQ0EsMkJBQUE7O0FBR0YsYUFBYTtBQUNiLGFBQWE7QUFDYixlQUFlO0FBQ2YsZUFBZTtBQUNmLGdCQUFnQjtBQUNoQixnQkFBZ0I7RUFDZCxVQUFBO0VBQ0EsU0FBQTtFQUNBLGdCQUFBOztBQUdGLGFBQWEsUUFBUTtBQUNyQixhQUFhLFNBQVM7QUFDdEIsZUFBZSxRQUFRO0FBQ3ZCLGVBQWUsU0FBUztBQUN4QixnQkFBZ0IsUUFBUTtBQUN4QixnQkFBZ0IsU0FBUztFQUN2QixVQUFBO0VBQ0EsYUFBQTs7QUFHRixhQUFhO0FBQ2IsZUFBZTtBQUNmLGdCQUFnQjtFQUNkLFVBQUE7RUFDQSxnQkFBQTs7QUFHRixhQUFhLFNBQVM7QUFDdEIsZUFBZSxTQUFTO0FBQ3hCLGdCQUFnQixTQUFTO0VBQ3ZCLFVBQUE7RUFDQSxTQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBIn0= */
+.downloadButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+  background: -moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: -webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: -o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: -ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+  background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a', GradientType=0);
+  background-color: #72b352;
+}
+.downloadButton:active {
+  position: relative;
+  top: 1px;
+}
+.shareButton {
+  -moz-box-shadow: 0px 10px 14px -7px #5d6fff;
+  -webkit-box-shadow: 0px 10px 14px -7px #5d6fff;
+  box-shadow: 0px 10px 14px -7px #5d6fff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
+  background: -moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+  background: -webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+  background: -o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+  background: -ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+  background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa', GradientType=0);
+  background-color: #2dabf9;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #5D6FFF;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 17px 35px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #263666;
+}
+.shareButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
+  background: -moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background: -webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background: -o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background: -ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+  background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9', GradientType=0);
+  background-color: #0688fa;
+}
+.shareButton:active {
+  position: relative;
+  top: 1px;
+}
+.deleteButton {
+  -moz-box-shadow: 0px 10px 14px -7px #ee0000;
+  -webkit-box-shadow: 0px 10px 14px -7px #ee0000;
+  box-shadow: 0px 10px 14px -7px #ee0000;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ee6363), color-stop(1, #db2929));
+  background: -moz-linear-gradient(top, #ee6363 5%, #db2929 100%);
+  background: -webkit-linear-gradient(top, #ee6363 5%, #db2929 100%);
+  background: -o-linear-gradient(top, #ee6363 5%, #db2929 100%);
+  background: -ms-linear-gradient(top, #ee6363 5%, #db2929 100%);
+  background: linear-gradient(to bottom, #ee6363 5%, #db2929 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EE6363', endColorstr='#DB2929', GradientType=0);
+  background-color: #EE6363;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #EE0000;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 17px 35px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #CD0000;
+}
+.deleteButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #db2929), color-stop(1, #ee6363));
+  background: -moz-linear-gradient(top, #db2929 5%, #ee6363 100%);
+  background: -webkit-linear-gradient(top, #db2929 5%, #ee6363 100%);
+  background: -o-linear-gradient(top, #db2929 5%, #ee6363 100%);
+  background: -ms-linear-gradient(top, #db2929 5%, #ee6363 100%);
+  background: linear-gradient(to bottom, #db2929 5%, #ee6363 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DB2929', endColorstr='#EE6363', GradientType=0);
+  background-color: #DB2929;
+}
+.deleteButton:active {
+  position: relative;
+  top: 1px;
+}
+.file a {
+  text-decoration: none;
+  color: #FFF;
+}
+.file div.buttons {
+  margin-top: 50px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4YWJyYWhhbS9EZXZlbG9wbWVudC9XZWIgRGV2ZWxvcG1lbnQvU2hhcmVDbG9jay9hcHAvc3JjL2xlc3Mvc2hhcmVjbG9jay5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFZQTtBQUFNO0VBQU8sWUFBQTs7QUFFYjtFQUNDLFdBQUE7O0VBQ0EsU0FBQTtFQUNBLGFBQVksa0JBQVo7RUFDQSxrQkFBQTtFQUNBLFdBQUE7O0VBR0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsNkJBQUE7O0FBR0Q7RUFDQyxrQkFBQTs7QUFHRDtFQUNJLFlBQUE7RUFDQSxnQkFBQTs7RUFDQSxnQkFBQTs7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxzQkFBQTs7QUFHSixHQUFHO0VBQ0YsZ0JBQUE7RUFDQSxrQkFBQTs7QUFHRCxJQUFLO0FBQ0Q7QUFDQTtBQUNBO0VBQ0QsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsYUFBWSx1QkFBdUIsd0JBQXdCLDhDQUEzRDtFQUNBLGdCQUFBO0VBQ0EsY0FBQTs7QUFHSCxHQUFHLFFBQVM7QUFDWixHQUFHLFVBQVc7RUFFYixrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBOztBQVBELEdBQUcsUUFBUyxZQVNYO0FBUkQsR0FBRyxVQUFXLFlBUWI7RUFDQyxZQUFBO0VBQ0EsYUFBQTs7QUFYRixHQUFHLFFBQVMsWUFjWCxPQUFNO0FBYlAsR0FBRyxVQUFXLFlBYWIsT0FBTTtFQUNMLGNBQUE7RUFDQSxpQkFBQTs7O0FBUUY7RUFFQyxtQ0FBQTtFQUNBLGVBQUE7RUFDQSxXQUFBO0VBQ0EsY0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7O0FBUEQsVUFTQyxRQUFRLEtBQUs7RUFDWix5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0Esa0JBQUE7O0FBZEYsVUFpQkMsUUFBUSxLQUFLO0VBQ1osaUJBQUE7OztBQU1GLEdBQUc7RUFDRixn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 */

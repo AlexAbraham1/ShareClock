@@ -4,17 +4,36 @@ module.exports = function($resource, $q) {
 
     console.log('FilesService Loaded');
 
-    var URL = 'http://api.shareclock.dev/api/files/:fileId';
+    var URL = 'http://api.shareclock.dev/api/:foo/:fileId';
 
     var Files = $resource(URL, {}, {
 
         getFiles: {
-            method: "GET"
+            method: "GET",
+            params: {
+                foo: 'files'
+            }
+        },
+
+        getFile: {
+            method: "GET",
+            params: {
+                foo: 'files',
+                fileId: '@id'
+            }
+        },
+
+        upload: {
+            method: "POST",
+            params: {
+                foo: 'upload'
+            }
         },
 
         remove: {
             method: "DELETE",
             params: {
+                foo: 'files',
                 fileId: '@id'
             }
         }
@@ -26,12 +45,37 @@ module.exports = function($resource, $q) {
         console.log('FilesService.getFiles()');
         var deferred = $q.defer();
 
-        Files.get({}, function(response) {
+        Files.getFiles({}, function(response) {
             deferred.resolve(response.data);
         }, function(error) {
             deferred.reject(error);
         });
 
+        return deferred.promise;
+    }
+
+    this.getFile = function(id) {
+        console.log('FilesService.getFile()');
+        var deferred = $q.defer();
+
+        Files.getFile({fileId: id}, function(response) {
+            deferred.resolve(response.data);
+        }, function(error) {
+            deferred.reject(error);
+        });
+
+        return deferred.promise;
+    }
+
+    this.uploadFile = function(data) {
+        console.log('FilesService.uploadFile()');
+        var deferred = $q.defer();
+
+        Files.upload(data, function(response) {
+            deferred.resolve(response.data);
+        }, function(error) {
+            deferred.reject(error);
+        });
         return deferred.promise;
     }
 

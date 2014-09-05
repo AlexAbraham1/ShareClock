@@ -3,11 +3,11 @@
 module.exports = function($scope, FilesService) {
 
     // create a message to display in our view
-    console.log('FilesCtrl Loaded');
+    console.log('HomeCtrl Loaded');
 
     var getFiles = function() 
     {
-        console.log('FilesCtrl.getFiles');
+        console.log('HomeCtrl.getFiles');
         FilesService.getFiles().then(function(files) {
             $scope.files = files;
             console.log($scope.files);
@@ -17,16 +17,29 @@ module.exports = function($scope, FilesService) {
     
     getFiles();
 
-
-
-    $scope.viewFile = function(id)
+    $scope.viewFile = function(id, filetype)
     {
-        window.location.href = 'http://api.shareclock.dev/files/' + id;
+        window.location.href = '/view/' + filetype + '/'  + id;
     }
 
     $scope.removeFile = function(id) 
     {
         FilesService.removeFile(id).then(function(file) {
+            console.log(file);
+            getFiles()
+        }, function(error) {
+            alert(error.data.message);
+        });
+    }
+
+    $scope.uploadFile = function()
+    {
+        var data = {
+            file: $scope.file,
+            timeout: $scope.timeout
+        }
+
+        FilesService.uploadFile(data).then(function(file) {
             console.log(file);
             getFiles()
         }, function(error) {

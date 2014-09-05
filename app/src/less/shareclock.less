@@ -18,17 +18,29 @@ body {
 	font-family:'Lato', sans-serif;
 	text-align:center;
 	color: #999;
+
+	/*FF*/
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 }
 
 h2 {
 	text-align: center;
 }
 
+.UploadBox {
+    width:500px;
+    margin:0px auto; /* Right and left margin widths set to "auto" */
+    text-align:left; /* Counteract to IE5/Win Hack */
+    padding:15px;
+    border:1px dashed #333;
+    background-color:#eee;
+}
+
 div.endpoints {
 	margin: 1em auto;
 	text-align: center;
-	align: center;
-	margin-top: 50px;
 }
 
 form > input, 
@@ -62,36 +74,12 @@ div.endpoints > .jsonForm
 	}
 }
 
-div.uibootstrap > table
-{
-	font-family: sans-serif;
-	-webkit-font-smoothing: antialiased;
-	font-size: 115%;
-	width: auto;
-	overflow: auto;
-	margin-left: auto;
-	margin-right: auto;
-
-	> tbody > tr > th {
-		background-color: rgb(92, 138, 255);
-		font-weight: bold;
-		color: white;
-		padding: 10px 5px;
-		text-align: center;
-	}
-
-	> tbody > tr > td {
-		padding: 2px 10px;
-	}
-}
-
 
 /*TABLE*/
-div.objects > table,
-div.endpoints > table,
-div.dashboard > table
-{
-	font-family: sans-serif;
+
+
+.fileTable {
+
 	-webkit-font-smoothing: antialiased;
 	font-size: 115%;
 	width: auto;
@@ -99,7 +87,7 @@ div.dashboard > table
 	margin-left: auto;
 	margin-right: auto;
 
-	> tbody > tr > th {
+	> thead > tr > th {
 		background-color: rgb(112, 196, 105);
 		font-weight: normal;
 		color: white;
@@ -110,81 +98,195 @@ div.dashboard > table
 	> tbody > tr > td {
 		padding: 2px 10px;
 	}
-
 }
 
-.filter {
-	margin-left: auto;
-	margin-right: auto;
-}
+/*File View*/
 
-.calendar {
-
-	.quickdate-calendar th {
-		background-color: red;
-	}
-
-	font-family: sans-serif;
-	-webkit-font-smoothing: antialiased;
-	font-size: 80%;
-	width: auto;
-	background-color: rgb(001, 196, 105);
-	font-weight: normal;
-	color: white;
+div.file {
+	margin: 1em auto;
 	text-align: center;
 }
 
-
-/*AngularJS animations*/
-
-.object-table.ng-enter,
-.object-table.ng-leave,
-.object-table.ng-move, 
-.endpoint-table.ng-enter,
-.endpoint-table.ng-leave,
-.endpoint-table.ng-move,
-.dashboard-table.ng-enter,
-.dashboard-table.ng-leave,
-.dashboard-table.ng-move {
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all;
-  transition: 0.5s linear all;
+div.file h1 {
+	font-size: 32px;
+	margin: 16px 0 0 0;
 }
 
-.object-table.ng-enter,
-.object-table.ng-move,
-.endpoint-table.ng-enter,
-.endpoint-table.ng-move,
-.dashboard-table.ng-enter,
-.dashboard-table.ng-move {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
+div.file img {
+	max-width: 80%;
+	max-height: 300px;
 }
 
-.object-table.ng-move.ng-move-active,
-.object-table.ng-enter.ng-enter-active,
-.endpoint-table.ng-move.ng-move-active,
-.endpoint-table.ng-enter.ng-enter-active,
-.dashboard-table.ng-move.ng-move-active,
-.dashboard-table.ng-enter.ng-enter-active {
-  opacity: 1;
-  height: 120px;
+.downloadButton {
+	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
+	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+	background:-moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+	background-color:#77b55a;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:28px;
+	font-weight:bold;
+	padding:17px 35px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.downloadButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+	background:-moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+	background-color:#72b352;
+}
+.downloadButton:active {
+	position:relative;
+	top:1px;
 }
 
-.object-table.ng-leave,
-.endpoint-table.ng-leave,
-.dashboard-table.ng-leave {
-  opacity: 1;
-  overflow: hidden;
+.downloadButton {
+	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
+	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+	background:-moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:-ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+	background-color:#77b55a;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:28px;
+	font-weight:bold;
+	padding:17px 35px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.downloadButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+	background:-moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:-ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+	background-color:#72b352;
+}
+.downloadButton:active {
+	position:relative;
+	top:1px;
 }
 
-.object-table.ng-leave.ng-leave-active,
-.endpoint-table.ng-leave.ng-leave-active,
-.dashboard-table.ng-leave.ng-leave-active {
-  opacity: 0;
-  height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+.shareButton {
+	-moz-box-shadow: 0px 10px 14px -7px #5D6FFF;
+	-webkit-box-shadow: 0px 10px 14px -7px #5D6FFF;
+	box-shadow: 0px 10px 14px -7px #5D6FFF;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
+	background:-moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:-webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:-o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:-ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa',GradientType=0);
+	background-color:#2dabf9;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #5D6FFF;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:28px;
+	font-weight:bold;
+	padding:17px 35px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+.shareButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
+	background:-moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:-webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:-o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:-ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9',GradientType=0);
+	background-color:#0688fa;
+}
+.shareButton:active {
+	position:relative;
+	top:1px;
+}
+
+.deleteButton {
+	-moz-box-shadow: 0px 10px 14px -7px #EE0000;
+	-webkit-box-shadow: 0px 10px 14px -7px #EE0000;
+	box-shadow: 0px 10px 14px -7px #EE0000;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #EE6363), color-stop(1, #DB2929));
+	background:-moz-linear-gradient(top, #EE6363 5%, #DB2929 100%);
+	background:-webkit-linear-gradient(top, #EE6363 5%, #DB2929 100%);
+	background:-o-linear-gradient(top, #EE6363 5%, #DB2929 100%);
+	background:-ms-linear-gradient(top, #EE6363 5%, #DB2929 100%);
+	background:linear-gradient(to bottom, #EE6363 5%, #DB2929 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#EE6363', endColorstr='#DB2929',GradientType=0);
+	background-color:#EE6363;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #EE0000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:28px;
+	font-weight:bold;
+	padding:17px 35px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #CD0000;
+}
+.deleteButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #DB2929), color-stop(1, #EE6363));
+	background:-moz-linear-gradient(top, #DB2929 5%, #EE6363 100%);
+	background:-webkit-linear-gradient(top, #DB2929 5%, #EE6363 100%);
+	background:-o-linear-gradient(top, #DB2929 5%, #EE6363 100%);
+	background:-ms-linear-gradient(top, #DB2929 5%, #EE6363 100%);
+	background:linear-gradient(to bottom, #DB2929 5%, #EE6363 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#DB2929', endColorstr='#EE6363',GradientType=0);
+	background-color:#DB2929;
+}
+.deleteButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.file a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.file div.buttons {
+	margin-top: 50px; 
 }

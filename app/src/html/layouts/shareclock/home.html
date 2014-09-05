@@ -1,0 +1,61 @@
+<div class="endpoints">
+
+    <table class="table table-hover table-bordered fileTable">
+
+        <thead>
+            <tr class="tableHeader">
+                <th>FILE NAME</th>
+                <th>FILE ID</th>
+                <th>FILE TYPE</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="file in files">
+                <td> {{ file.name }} </td>
+                <td> {{ file.id }} </td>
+                <td> {{ file.filetype }}</td>
+                <td>
+                    <button ng-click='viewFile(file.id, file.filetype)'>VIEW</button>
+                    <button ng-click='removeFile(file.id)'>DELETE</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+
+    <div class="UploadBox" style="margin-top: 50px;">
+        <form method="POST" ng-submit="uploadFile()" accept-charset="UTF-8" enctype="multipart/form-data">
+            <!-- <label for="file" id="" class="">File</label>
+            <input ng-model="file" name="file" type="file" id="file"> -->
+
+            <div flow-init>
+			    <input type="file" flow-btn />
+			</div>
+            <br/>
+            <label for="timeout" id="" class="">Timeout</label>
+            <select ng-model="timeout" name="minutes">
+                <option value="">None</option>
+                <option value="1">1 Minute</option>
+                <option value="5">5 Minutes</option>
+                <option value="10">10 Minutes</option>
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="60">1 Hour</option>
+                <option value="120">2 Hours</option>
+                <option value="180">3 Hours</option>
+                <option value="360">6 Hours</option>
+                <option value="720">12 Hours</option>
+                <option value="1440">24 Hours</option>
+            </select>
+            <br />
+            <!-- submit buttons -->
+            <input type="submit" value="Save">
+            <!-- reset buttons -->
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+</div>

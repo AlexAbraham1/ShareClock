@@ -46,17 +46,47 @@ module.exports = function($stateProvider, $urlRouterProvider, $routeProvider, $l
         },
         data : { pageTitle: 'Endpoints' }
 
-    }).state("Files", {
-        url: "/files",
+    }).state("Home", {
+        url: "/",
         views: {
             layout: {
-                templateUrl: "/release/html/layouts/shareclock/files.html",
-                controller: "FilesCtrl"
+                templateUrl: "/release/html/layouts/shareclock/home.html",
+                controller: "HomeCtrl"
             }
         },
-        data : { pageTitle: 'ShareClock Files' }
+        data : { pageTitle: 'ShareClock Home' }
 
-    });;
+    }).state("ImageView", {
+        url: "/view/{filetype:image}/{id:[0-9]+}",
+        views: {
+            layout: {
+                templateUrl: "/release/html/layouts/shareclock/files/image.html",
+                controller: "FileCtrl"
+            }
+        },
+        data : { pageTitle: 'ShareClock Image' }
+
+    }).state("PDFView", {
+        url: "/view/{filetype:pdf}/{id:[0-9]+}",
+        views: {
+            layout: {
+                templateUrl: "/release/html/layouts/shareclock/files/pdf.html",
+                controller: "FileCtrl"
+            }
+        },
+        data : { pageTitle: 'ShareClock PDF' }
+
+    }).state("OtherView", {
+        url: "/view/{filetype:other}/{id:[0-9]+}",
+        views: {
+            layout: {
+                templateUrl: "/release/html/layouts/shareclock/files/other.html",
+                controller: "FileCtrl"
+            }
+        },
+        data : { pageTitle: 'ShareClock Other' }
+
+    });
 
 
 }
