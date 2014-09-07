@@ -55,21 +55,8 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
         } 
     }
 
-
-    //IMAGE DISPLAY MODAL
-    $scope.imageModal = function() {
-
-        var modal = $modal.open({
-            scope: $scope,
-            templateUrl: '/src/html/layouts/shareclock/files/modals/imageModal.html',
-        });
-
-        modal.result.then(function() {
-
-        }, function() {
-            console.log('Modal dismissed at: ' + new Date());
-        });
-    };
+    //PDF COLORBOX TEMPLATE
+    $scope.pdfColorboxTemplate = '<object data={{filePath}} type="application/pdf" width="100%" height="100%">';
 
     
 }

@@ -44,15 +44,37 @@ shareclock.directive('updateTitle', function($rootScope, $timeout) {
   }
 });
 
-shareclock.directive('colorbox', function($compile, $rootScope){
+shareclock.directive('colorboximage', function($compile, $rootScope){
   return {
     link: function(scope, element, attrs){
       element.click('bind', function(){
         $.colorbox({
-          opacity:0.8, 
-          maxWidth: "90%", 
+          opacity:0.7, 
+          maxWidth: "85%", 
           scalePhotos: true,
-          href: attrs.colorbox,
+          href: attrs.colorboximage,
+          onComplete: function(){
+            $rootScope.$apply(function(){
+              var content = $('#cboxLoadedContent');
+              $compile(content)($rootScope);      
+            })
+          }
+        });
+      });
+    }
+  };
+});
+
+shareclock.directive('colorboxpdf', function($compile, $rootScope){
+  return {
+    link: function(scope, element, attrs){
+      element.click('bind', function(){
+        $.colorbox({
+          opacity:0.7, 
+          width: '75%',
+          height: '90%',
+          inline: true,
+          href: "#pdfHTML",
           onComplete: function(){
             $rootScope.$apply(function(){
               var content = $('#cboxLoadedContent');
