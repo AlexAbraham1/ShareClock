@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($scope, FilesService, $stateParams) {
+module.exports = function($scope, FilesService, $stateParams, $modal) {
 
     // create a message to display in our view
     console.log('FileCtrl Loaded');
@@ -54,6 +54,22 @@ module.exports = function($scope, FilesService, $stateParams) {
             window.location.replace(link);
         } 
     }
+
+
+    //IMAGE DISPLAY MODAL
+    $scope.imageModal = function() {
+
+        var modal = $modal.open({
+            scope: $scope,
+            templateUrl: '/src/html/layouts/shareclock/files/modals/imageModal.html',
+        });
+
+        modal.result.then(function() {
+
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    };
 
     
 }

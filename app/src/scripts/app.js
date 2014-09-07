@@ -12,6 +12,7 @@ require("../../vendor/ng-prettyjson/dist/ng-prettyjson.min");
 require("../../vendor/angular-bootstrap/ui-bootstrap");
 require("../../vendor/angular-bootstrap/ui-bootstrap-tpls");
 require("../../vendor/angular-upload/angular-upload");
+require("../../vendor/colorbox/colorbox");
 
 console.log("app.js Loaded");
 
@@ -43,6 +44,27 @@ shareclock.directive('updateTitle', function($rootScope, $timeout) {
   }
 });
 
+shareclock.directive('colorbox', function($compile, $rootScope){
+  return {
+    link: function(scope, element, attrs){
+      element.click('bind', function(){
+        $.colorbox({
+          opacity:0.8, 
+          maxWidth: "90%", 
+          scalePhotos: true,
+          href: attrs.colorbox,
+          onComplete: function(){
+            $rootScope.$apply(function(){
+              var content = $('#cboxLoadedContent');
+              $compile(content)($rootScope);      
+            })
+          }
+        });
+      });
+    }
+  };
+});
+
 
 shareclock.config(require("./routes/MainRoutes"));
 
@@ -53,7 +75,7 @@ shareclock.controller('EndpointCtrl', ["$scope", "EndpointService", "$rootScope"
 shareclock.controller('DashboardCtrl', ["$scope", "DashboardService", "$rootScope", "$cookies", "EndpointTestService", "ObjectService", "EndpointService", "$modal", "$timeout", require("./controllers/DashboardCtrl")]);
 
 shareclock.controller('HomeCtrl', ["$scope", "FilesService", "upload", require("./controllers/HomeCtrl")]);
-shareclock.controller('FileCtrl', ["$scope", "FilesService", "$stateParams", require("./controllers/FileCtrl")]);
+shareclock.controller('FileCtrl', ["$scope", "FilesService", "$stateParams", "$modal", require("./controllers/FileCtrl")]);
 
 
 shareclock.service('DashboardService', ["$resource", "$q", "$rootScope", require("./services/DashboardService")]);
