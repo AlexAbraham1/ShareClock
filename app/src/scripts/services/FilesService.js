@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($resource, $q) {
+module.exports = function($resource, $q, TransformRequestAsFormPost) {
 
     console.log('FilesService Loaded');
 
@@ -25,6 +25,7 @@ module.exports = function($resource, $q) {
 
         upload: {
             method: "POST",
+            transformRequest: TransformRequestAsFormPost,
             params: {
                 foo: 'upload'
             }

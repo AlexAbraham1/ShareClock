@@ -28,13 +28,12 @@
 
 
     <div class="UploadBox" style="margin-top: 50px;">
-        <form method="POST" ng-submit="uploadFile()" accept-charset="UTF-8" enctype="multipart/form-data">
+        <form id="myForm" method="POST" ng-submit="uploadFile()" accept-charset="UTF-8" enctype="multipart/form-data">
             <!-- <label for="file" id="" class="">File</label>
             <input ng-model="file" name="file" type="file" id="file"> -->
 
-            <div flow-init>
-			    <input type="file" flow-btn />
-			</div>
+            <label for="file" id="" class="" ng-model="file">File</label>
+            <input type="file" ng-model-instant id="fileToUpload" onchange="angular.element(this).scope().setFiles(this)"/>
             <br/>
             <label for="timeout" id="" class="">Timeout</label>
             <select ng-model="timeout" name="minutes">
@@ -52,10 +51,20 @@
                 <option value="1440">24 Hours</option>
             </select>
             <br />
-            <!-- submit buttons -->
-            <input type="submit" value="Save">
-            <!-- reset buttons -->
+            <!-- submit button -->
+            <button type="button" ng-click='uploadFile()'>Upload</button>
+
+            <!-- reset button -->
             <input type="reset" value="Reset">
+
+            <!-- progress bar -->
+            <div ng-show="progressVisible">
+                <div class="percent">{{progress}}%</div>
+                <div class="progress-bar">
+                    <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+                </div>
+            </div>
+            
         </form>
     </div>
 </div>

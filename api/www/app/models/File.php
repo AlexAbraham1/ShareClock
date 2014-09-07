@@ -165,7 +165,7 @@ class File extends Eloquent implements FileRepository {
 			} else {
 
 				$newFile->filetype = "other";
-				
+
 			}
 
 			$uploadSuccess = Input::file('file')->move($destinationPath, $filename);
