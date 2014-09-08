@@ -10,6 +10,10 @@ class File extends Eloquent implements FileRepository {
 	{
 		$files = $this->get();
 
+		foreach ($files as $file) {
+			$file = $file->formatted();
+		}
+
 		return $files->toArray();
 	}
 
@@ -20,42 +24,12 @@ class File extends Eloquent implements FileRepository {
 
 		if ($file != null) {
 
-			$data = [];
-
-			$path = $file->path . '/' . $file->name;
-
-			$fullpath = '/' . $path;
-
-			$name = $file->name;
-
-			$extension = $file->extension;
-
-			$timeout = $file->timeout;
-
-			if ($timeout) {
-				$remainder = strtotime($timeout) % 60; 
-
-				$timeout = (Carbon::createFromTimestamp(strtotime($timeout))->addSeconds(60-$remainder));
-
-				$seconds = $timeout->diffInSeconds(Carbon::now());
-			} else {
-				$seconds = 0;
-			}
-			$data["id"] = $file->id;
-			$data["path"] = $fullpath;
-			$data["name"] = $name;
-			$data["seconds"] = $seconds;
-			$data["filetype"] = $file->filetype;
-			$data["filesize"] = $file->size;
-			$data["data"] = unserialize($file->data);
-
-			return $data;
-
-
-
+			return $file->formatted();
 
 		} else {
+
 			throw new Exception("Sorry, File ID Not Found"); die();
+			
 		}
 	}
 
@@ -127,27 +101,28 @@ class File extends Eloquent implements FileRepository {
 		if ($file) {
 			$newFile = new File();
 
-			$destinationPath = 'uploads/'.str_random(8);
+			$destinationPath = 'uploads/' . str_random(8);
 			$newFile->path = $destinationPath;
 
 			
 			$filename = $this->spaceToDash($file->getClientOriginalName());
 			$newFile->name = $filename;
 			
+
 			$extension =$file->getClientOriginalExtension();
 			$newFile->extension = $extension;
 
+
 			$time = intval(Input::get('minutes'));
-
-
 			if ($time) {
 				$timeout = Carbon::now()->addMinutes($time);
 				$newFile->timeout = $timeout;
 			}
 
+
 			$uploadSuccess = Input::file('file')->move($destinationPath, $filename);
 			 
-			if( $uploadSuccess ) {
+			if ($uploadSuccess) {
 
 				$path = $destinationPath . '/' . $filename;
 
@@ -181,7 +156,6 @@ class File extends Eloquent implements FileRepository {
 				}
 
 				$newFile->save();
-				$url = 'files/' . $newFile->id;
 
 				return $newFile->formatted();
 			} else {
@@ -226,7 +200,12 @@ class File extends Eloquent implements FileRepository {
 
 	public function formatted()
 	{
-		$this->data = unserialize($this->data);
+		if ($this->data != null) {
+			$this->data = unserialize($this->data);
+		}
+
+		$path = '/' . $this->path . '/' . $this->name;
+		$this->path = $path;
 		
 		return $this->toArray();
 	}

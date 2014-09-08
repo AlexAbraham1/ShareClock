@@ -16,10 +16,7 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
 
             var filetype = file.filetype;
 
-            $scope.filePath = 'http://api.shareclock.dev' + file.path;
-
-            console.log(file);
-            
+            $scope.filePath = 'http://api.shareclock.dev' + file.path;            
 
         }, function(error) {
             alert(error.data.message);
