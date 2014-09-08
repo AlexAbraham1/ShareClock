@@ -46,17 +46,8 @@ class File extends Eloquent implements FileRepository {
 			$data["name"] = $name;
 			$data["seconds"] = $seconds;
 			$data["filetype"] = $file->filetype;
-
-			if (exif_imagetype($path)) {
-
-				$dimensions = getimagesize($path);
-				$data["dimensions"] = $dimensions;
-
-			} else if ($extension == "pdf") {
-
-			} else {
-
-			}
+			$data["filesize"] = $file->size;
+			$data["data"] = unserialize($file->data);
 
 			return $data;
 
@@ -153,27 +144,46 @@ class File extends Eloquent implements FileRepository {
 				$timeout = Carbon::now()->addMinutes($time);
 				$newFile->timeout = $timeout;
 			}
-			
-			if (exif_imagetype($file)) {
-
-				$newFile->filetype = "image";
-
-			} else if ($extension == "pdf") {
-
-				$newFile->filetype = "pdf";
-
-			} else {
-
-				$newFile->filetype = "other";
-
-			}
 
 			$uploadSuccess = Input::file('file')->move($destinationPath, $filename);
 			 
 			if( $uploadSuccess ) {
+
+				$path = $destinationPath . '/' . $filename;
+
+				$newFile->size = filesize($path);
+
+
+				if (exif_imagetype($path)) {
+
+					$newFile->filetype = "image";
+
+					$dimensions = getimagesize($path);
+					$width = $dimensions[0];
+					$height = $dimensions[1];
+
+					$data = [];
+
+					$data['width'] = $width;
+					$data['height'] = $height;
+					
+
+					$newFile->data = serialize($data);
+
+				} else if ($extension == "pdf") {
+
+					$newFile->filetype = "pdf";
+
+				} else {
+
+					$newFile->filetype = "other";
+
+				}
+
 				$newFile->save();
 				$url = 'files/' . $newFile->id;
-				return $newFile;
+
+				return $newFile->formatted();
 			} else {
 			   throw new Exception('Something went wrong!'); die();
 			}
@@ -212,5 +222,12 @@ class File extends Eloquent implements FileRepository {
 	public function spaceToDash($str) 
 	{
 		return str_replace(' ', '-', $str);
+	}
+
+	public function formatted()
+	{
+		$this->data = unserialize($this->data);
+		
+		return $this->toArray();
 	}
 }
