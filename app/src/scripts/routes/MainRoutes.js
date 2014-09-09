@@ -85,7 +85,17 @@ module.exports = function($stateProvider, $urlRouterProvider, $routeProvider, $l
             }
         },
         data : { pageTitle: 'ShareClock Other' }
+    
+    })
 
+    //MAKE SURE THE "OTHERWISE" STATE IS AT BOTTOM
+    .state("otherwise", {
+        url: "*path",
+        views: {
+            layout: {
+                templateUrl: "/release/html/layouts/shareclock/404.html"
+            }
+        }
     });
 
 

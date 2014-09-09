@@ -36,14 +36,14 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
         console.log('SHARING FILE!!');
     }
 
-    $scope.removeFile = function() 
-    {
-        FilesService.removeFile($stateParams.id).then(function(file) {
-            $scope.goToHome();
-        }, function(error) {
-            alert(error.data.message);
-        });
-    }
+    // $scope.removeFile = function() 
+    // {
+    //     FilesService.removeFile($stateParams.id).then(function(file) {
+    //         $scope.goToHome();
+    //     }, function(error) {
+    //         alert(error.data.message);
+    //     });
+    // }
 
     var redirect = function(type)
     {
@@ -53,8 +53,29 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
         } 
     }
 
-    //PDF COLORBOX TEMPLATE
-    $scope.pdfColorboxTemplate = '<object data={{filePath}} type="application/pdf" width="100%" height="100%">';
+    $scope.removeFileModal = function(file) {
+        $scope.fileToRemove = file;
+
+        var modal = $modal.open({
+            scope: $scope,
+            templateUrl: '/src/html/layouts/shareclock/modals/removeFile.html'
+        });
+
+        modal.result.then(function() {
+
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    $scope.removeFile = function(fileToRemove, $close) {
+        FilesService.remove(fileToRemove.id).then(function(file) {
+            $close('success');
+            $scope.goToHome();
+        }, function(error) {
+            console.log(error.data.message);
+        });
+    };
 
     
 }
