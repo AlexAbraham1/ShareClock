@@ -26,71 +26,22 @@ var dateLocalizer = angular.module('dateLocalizeFilter', []).filter('dateLocaliz
 var shareclock = angular.module('ShareClock', ['ngRoute', 'ui.router', 'ngAnimate', 'ngSanitize', 'ngResource', 'ngQuickDate', 'dateLocalizeFilter', 'cookies', 'ngPrettyJson', 'ui.bootstrap', 'lr.upload']);
 
 
-shareclock.directive('updateTitle', function($rootScope, $timeout) {
-  return {
-    link: function(scope, element) {
-
-      var listener = function(event, toState, toParams, fromState, fromParams) {
-        var title = 'ShareClock';
-        if (toState.data && toState.data.pageTitle) title = toState.data.pageTitle;
-        // Set asynchronously so page changes before title does
-        $timeout(function() {
-          element.text(title);
-        });
-      };
-
-      $rootScope.$on('$stateChangeStart', listener);
-    }
-  }
-});
-
-shareclock.directive('colorboximage', function($compile, $rootScope){
-  return {
-    link: function(scope, element, attrs){
-      element.click('bind', function(){
-        $.colorbox({
-          opacity:0.7, 
-          maxWidth: "85%", 
-          scalePhotos: true,
-          href: attrs.colorboximage,
-          onComplete: function(){
-            $rootScope.$apply(function(){
-              var content = $('#cboxLoadedContent');
-              $compile(content)($rootScope);      
-            })
-          }
-        });
-      });
-    }
-  };
-});
-
-shareclock.directive('colorboxpdf', function($compile, $rootScope){
-  return {
-    link: function(scope, element, attrs){
-      element.click('bind', function(){
-        $.colorbox({
-          opacity:0.7, 
-          width: '75%',
-          height: '90%',
-          inline: true,
-          href: "#pdfHTML",
-          onComplete: function(){
-            $rootScope.$apply(function(){
-              var content = $('#cboxLoadedContent');
-              $compile(content)($rootScope);      
-            })
-          }
-        });
-      });
-    }
-  };
-});
-
-
+//CONFIG
 shareclock.config(require("./routes/MainRoutes"));
 
 
+
+//DIRECTIVES
+shareclock.directive('updateTitle', ["$rootScope", "$timeout", require('./directives/UpdateTitle')]);
+
+shareclock.directive('colorboximage', ["$compile", "$rootScope", require('./directives/ColorboxImage')]);
+
+shareclock.directive('colorboxpdf', ["$compile", "$rootScope", require('./directives/ColorboxPDF')]);
+
+
+
+
+//Controllers
 shareclock.controller('ObjectCtrl', ["$scope", "ObjectService", "$rootScope", "$cookies", require("./controllers/ObjectCtrl")]);
 shareclock.controller('EndpointCtrl', ["$scope", "EndpointService", "$rootScope", "$cookies", require("./controllers/EndpointCtrl")]);
 
@@ -100,6 +51,8 @@ shareclock.controller('HomeCtrl', ["$scope", "FilesService", "upload", require("
 shareclock.controller('FileCtrl', ["$scope", "FilesService", "$stateParams", "$modal", require("./controllers/FileCtrl")]);
 
 
+
+//SERVICES
 shareclock.service('DashboardService', ["$resource", "$q", "$rootScope", require("./services/DashboardService")]);
 shareclock.service('ObjectService', ["$resource", "$q", "$rootScope", require("./services/ObjectService")]);
 shareclock.service('EndpointService', ["$resource", "$q", "$rootScope", require("./services/EndpointService")]);
@@ -107,6 +60,10 @@ shareclock.service('EndpointTestService', ["$resource", "$q", "$rootScope", "$ht
 
 shareclock.service('FilesService', ["$resource", "$q", "TransformRequestAsFormPost", require("./services/FilesService")]);
 
+
+//FACTORIES
 shareclock.factory('TransformRequestAsFormPost', [require("./factories/TransformRequestAsFormPost")]);
+
+
 
 angular.bootstrap(document, ['ShareClock']);

@@ -2,7 +2,7 @@
 
 namespace Models;
 
-use Eloquent, FileRepository, Input, Queue, Exception, View, Redirect, DeleteFileQueue, DateTime, DateInterval, Carbon;
+use Eloquent, FileRepository, Input, Queue, Exception, View, Redirect, DeleteFileQueue, DateTime, DateInterval, Carbon, ZipArchive;
 
 class File extends Eloquent implements FileRepository {
 
@@ -149,6 +149,29 @@ class File extends Eloquent implements FileRepository {
 
 					$newFile->filetype = "pdf";
 
+				} else if ($extension == "zip") {
+
+					$newFile->filetype = "zip";
+
+					$data = [];
+
+					$contents = [];
+
+					$zip = new ZipArchive(); 
+
+					if($zip->open($path)) {
+
+						for ($i = 0; $i < $zip->numFiles; $i++) {
+						     $zipFileName = $zip->getNameIndex($i);
+						     array_push($contents, $zipFileName);
+						 }
+
+
+						$data['contents'] = json_decode(json_encode($contents));
+
+						$newFile->data = serialize($data);
+					}
+				
 				} else {
 
 					$newFile->filetype = "other";

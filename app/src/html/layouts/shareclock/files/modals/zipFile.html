@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h3 class="modal-title" style="text-align: center;">ZIP FILE CONTENTS</h3>
+</div>
+
+<div class="modal-body">
+    <div class="uibootstrap" style="max-height: 500px; overflow-y: scroll; margin-left: 30px; margin-right: 30px;">
+
+        <div ng-repeat="item in file.data.contents">
+        	{{item}}
+        </div>
+
+    </div>
+</div>

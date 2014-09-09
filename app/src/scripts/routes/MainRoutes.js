@@ -76,6 +76,16 @@ module.exports = function($stateProvider, $urlRouterProvider, $routeProvider, $l
         },
         data : { pageTitle: 'ShareClock PDF' }
 
+    }).state("ZipView", {
+        url: "/view/{filetype:zip}/{id:[0-9]+}",
+        views: {
+            layout: {
+                templateUrl: "/release/html/layouts/shareclock/files/zip.html",
+                controller: "FileCtrl"
+            }
+        },
+        data : { pageTitle: 'ShareClock ZIP' }
+    
     }).state("OtherView", {
         url: "/view/{filetype:other}/{id:[0-9]+}",
         views: {
@@ -95,7 +105,8 @@ module.exports = function($stateProvider, $urlRouterProvider, $routeProvider, $l
             layout: {
                 templateUrl: "/release/html/layouts/shareclock/404.html"
             }
-        }
+        },
+        data : { pageTitle: 'ShareClock 404' }
     });
 
 

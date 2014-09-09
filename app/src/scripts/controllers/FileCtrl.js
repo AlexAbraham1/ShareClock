@@ -10,13 +10,15 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
         console.log('FileCtrl.getFile');
         FilesService.getFile($stateParams.id).then(function(file) {
 
-            redirect(file.filetype);
-                
             $scope.file = file;
 
             var filetype = file.filetype;
 
-            $scope.filePath = 'http://api.shareclock.dev' + file.path;            
+            redirect(filetype);
+
+            $scope.filePath = 'http://api.shareclock.dev' + file.path;  
+
+            $scope.file.size = convertSize($scope.file.size, true);
 
         }, function(error) {
             alert(error.data.message);
@@ -58,7 +60,7 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
 
         var modal = $modal.open({
             scope: $scope,
-            templateUrl: '/src/html/layouts/shareclock/modals/removeFile.html'
+            templateUrl: '/src/html/layouts/shareclock/files/modals/removeFile.html'
         });
 
         modal.result.then(function() {
@@ -69,12 +71,42 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
     };
 
     $scope.removeFile = function(fileToRemove, $close) {
-        FilesService.remove(fileToRemove.id).then(function(file) {
+        FilesService.removeFile(fileToRemove.id).then(function(file) {
             $close('success');
             $scope.goToHome();
         }, function(error) {
             console.log(error.data.message);
         });
+    };
+
+
+    $scope.zipFileModal = function() {
+
+        var modal = $modal.open({
+            scope: $scope,
+            templateUrl: '/src/html/layouts/shareclock/files/modals/zipFile.html'
+        });
+
+        modal.result.then(function() {
+
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
+    }
+
+
+    var convertSize = function(bytes, si) 
+    {
+        var thresh = si ? 1000 : 1024;
+        if(bytes < thresh) return bytes + ' B';
+        var units = si ? ['kB','MB','GB','TB','PB','EB','ZB','YB'] : ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
+        var u = -1;
+        do {
+            bytes /= thresh;
+            ++u;
+        } while(bytes >= thresh);
+        return bytes.toFixed(1)+' '+units[u];
     };
 
     
