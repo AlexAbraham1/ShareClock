@@ -171,7 +171,33 @@ class File extends Eloquent implements FileRepository {
 
 						$newFile->data = serialize($data);
 					}
-				
+
+				} else if ($extension == "mp4" || $extension == "ogg" || $extension == "webm") {
+
+					$newFile->filetype = "video";
+					$data = [];
+					$data['type'] = 'video/' . $extension;
+
+					//GET VIDEO THUMBNAIL USING FFMPEG
+					$ffmpeg = '/usr/bin/ffmpegthumbnailer';
+					$imagePath = '/var/www/public/' . $path . '.jpg';
+					$interval = 10;
+					$imageSize = '640x480';
+					$cmd = "$ffmpeg -s 480 -q 6 -i $path -o $imagePath";
+
+					exec($cmd);
+
+
+					//CONVERT THUMBNAIL TO BASE64
+					// $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
+					// $imageData = file_get_contents($imagePath);
+					// $base64 = 'data:image/' . $imageType . ';base64,' . base64_encode($imageData);
+					// $data['thumbnail'] = $base64;
+					$data['thumbnail'] = '/' . $path . '.jpg';
+
+					$newFile->data = serialize($data);
+
+
 				} else {
 
 					$newFile->filetype = "other";
@@ -202,6 +228,10 @@ class File extends Eloquent implements FileRepository {
 			
 			$file->delete();
 			\File::delete($path);
+
+			if ($file->filetype == "video") {
+				\File::delete($path . '.jpg');
+			}
 
 			//Delete folder if empty
 			$allFiles = \File::allFiles($directory);

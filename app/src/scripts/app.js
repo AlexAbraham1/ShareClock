@@ -13,6 +13,11 @@ require("../../vendor/angular-bootstrap/ui-bootstrap");
 require("../../vendor/angular-bootstrap/ui-bootstrap-tpls");
 require("../../vendor/angular-upload/angular-upload");
 require("../../vendor/colorbox/colorbox");
+require("../../vendor/videogular/videogular");
+require("../../vendor/videogular-buffering/buffering");
+require("../../vendor/videogular-controls/controls");
+require("../../vendor/videogular-overlay-play/overlay-play");
+
 
 console.log("app.js Loaded");
 
@@ -23,7 +28,7 @@ var dateLocalizer = angular.module('dateLocalizeFilter', []).filter('dateLocaliz
     }
 });
 
-var shareclock = angular.module('ShareClock', ['ngRoute', 'ui.router', 'ngAnimate', 'ngSanitize', 'ngResource', 'ngQuickDate', 'dateLocalizeFilter', 'cookies', 'ngPrettyJson', 'ui.bootstrap', 'lr.upload']);
+var shareclock = angular.module('ShareClock', ['ngRoute', 'ui.router', 'ngAnimate', 'ngSanitize', 'ngResource', 'ngQuickDate', 'dateLocalizeFilter', 'cookies', 'ngPrettyJson', 'ui.bootstrap', 'lr.upload', "com.2fdevs.videogular", "com.2fdevs.videogular.plugins.controls", "com.2fdevs.videogular.plugins.overlayplay", "com.2fdevs.videogular.plugins.buffering"]);
 
 
 //CONFIG
@@ -48,7 +53,7 @@ shareclock.controller('EndpointCtrl', ["$scope", "EndpointService", "$rootScope"
 shareclock.controller('DashboardCtrl', ["$scope", "DashboardService", "$rootScope", "$cookies", "EndpointTestService", "ObjectService", "EndpointService", "$modal", "$timeout", require("./controllers/DashboardCtrl")]);
 
 shareclock.controller('HomeCtrl', ["$scope", "FilesService", "upload", require("./controllers/HomeCtrl")]);
-shareclock.controller('FileCtrl', ["$scope", "FilesService", "$stateParams", "$modal", require("./controllers/FileCtrl")]);
+shareclock.controller('FileCtrl', ["$scope", "$sce", "FilesService", "$stateParams", "$modal", require("./controllers/FileCtrl")]);
 
 
 

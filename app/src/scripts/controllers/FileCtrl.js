@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($scope, FilesService, $stateParams, $modal) {
+module.exports = function($scope, $sce, FilesService, $stateParams, $modal) {
 
     // create a message to display in our view
     console.log('FileCtrl Loaded');
@@ -19,6 +19,8 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
             $scope.filePath = 'http://api.shareclock.dev' + file.path;  
 
             $scope.file.size = convertSize($scope.file.size, true);
+
+            if (filetype == "video") setupVideoPlayer();
 
         }, function(error) {
             alert(error.data.message);
@@ -108,6 +110,38 @@ module.exports = function($scope, FilesService, $stateParams, $modal) {
         } while(bytes >= thresh);
         return bytes.toFixed(1)+' '+units[u];
     };
+
+    var setupVideoPlayer = function() 
+    {
+        $scope.currentTime = 0;
+        $scope.totalTime = 0;
+        $scope.state = null;
+        $scope.volume = 1;
+        $scope.isCompleted = false;
+        $scope.API = null;
+
+        $scope.onPlayerReady = function(API) {
+            $scope.API = API;
+        };
+
+        $scope.config = {
+            autoHide: false,
+            autoHideTime: 3000,
+            autoPlay: false,
+            sources: [
+                {src: $sce.trustAsResourceUrl($scope.filePath), type: $scope.file.data.type}
+            ],
+            transclude: true,
+            theme: {
+                url: "/release/styles/videogular/videogular.css"
+            },
+            plugins: {
+                poster: {
+                    url: 'http://api.shareclock.dev' + $scope.file.data.thumbnail
+                }
+            }
+        };
+    }
 
     
 }

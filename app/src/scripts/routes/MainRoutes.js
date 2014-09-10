@@ -66,6 +66,16 @@ module.exports = function($stateProvider, $urlRouterProvider, $routeProvider, $l
         },
         data : { pageTitle: 'ShareClock Image' }
 
+    }).state("VideoView", {
+        url: "/view/{filetype:video}/{id:[0-9]+}",
+        views: {
+            layout: {
+                templateUrl: "/release/html/layouts/shareclock/files/video.html",
+                controller: "FileCtrl"
+            }
+        },
+        data : { pageTitle: 'ShareClock Video' }
+
     }).state("PDFView", {
         url: "/view/{filetype:pdf}/{id:[0-9]+}",
         views: {
