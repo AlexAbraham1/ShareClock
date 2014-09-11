@@ -1,36 +1,25 @@
 <div class="file">
-	
-	<div class="videogular-container">
-		<videogular vg-player-ready="onPlayerReady" vg-theme="config.theme.url">
-			<vg-video vg-src="config.sources"></vg-video>
-
-			<vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
-				<vg-play-pause-button></vg-play-pause-button>
-				<vg-timedisplay>{{ API.currentTime | date:'mm:ss' }}</vg-timedisplay>
-				<vg-scrubBar>
-					<vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
-				</vg-scrubBar>
-				<vg-timedisplay>{{ API.timeLeft | date:'mm:ss' }}</vg-timedisplay>
-				<vg-volume>
-					<vg-mutebutton></vg-mutebutton>
-					<vg-volumebar></vg-volumebar>
-				</vg-volume>
-				<vg-fullscreenButton></vg-fullscreenButton>
-			</vg-controls>
-
-			<vg-poster-image vg-url='config.plugins.poster.url'></vg-poster-image>
-			<vg-buffering></vg-buffering>
-			<vg-overlay-play vg-play-icon="config.theme.playIcon"></vg-overlay-play>
-		</videogular>
-	</div>
-
+	<img src="{{videoConfig.thumbnail}}" colorboxvideo/>
+	<h1>{{file.name}}</h1>
+	<p> {{file.size}}</p>
+	<h5>CLICK IMAGE TO WATCH VIDEO</h5>
 	<div class="buttons">
 		<a href="{{filePath}}" class="downloadButton" download>DOWNLOAD</a>
 		
 		<span style="margin-left: 30px;"><a ng-click='shareFile()' class="shareButton" download>SHARE</a></span>
 
-		<span style="margin-left: 30px;"><a ng-click='removeFileModal(file)' class="deleteButton">DELETE</a></span>
+		<span style="margin-left: 30px;"><a ng-click='removeFile()' class="deleteButton">DELETE</a></span>
 	
+	</div>
+</div>
+
+
+<!-- This contains the hidden content for inline calls -->
+<div style='display:none'>
+	<div id='videoHTML' style='height: 100%; min-height: 100%;'>
+		<videogular vg-theme="videoConfig.theme.url">
+			<vg-video vg-src="videoConfig.sources" vg-native-controls="true"></vg-video>
+		</videogular>
 	</div>
 </div>
 

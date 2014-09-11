@@ -113,33 +113,19 @@ module.exports = function($scope, $sce, FilesService, $stateParams, $modal) {
 
     var setupVideoPlayer = function() 
     {
-        $scope.currentTime = 0;
-        $scope.totalTime = 0;
-        $scope.state = null;
-        $scope.volume = 1;
-        $scope.isCompleted = false;
-        $scope.API = null;
 
         $scope.onPlayerReady = function(API) {
-            $scope.API = API;
+            $scope.VideoAPI = API;
         };
 
-        $scope.config = {
-            autoHide: false,
-            autoHideTime: 3000,
-            autoPlay: false,
+        $scope.videoConfig = {
             sources: [
                 {src: $sce.trustAsResourceUrl($scope.filePath), type: $scope.file.data.type}
             ],
-            transclude: true,
             theme: {
                 url: "/release/styles/videogular/videogular.css"
             },
-            plugins: {
-                poster: {
-                    url: 'http://api.shareclock.dev' + $scope.file.data.thumbnail
-                }
-            }
+            thumbnail: 'http://api.shareclock.dev' + $scope.file.data.thumbnail
         };
     }
 

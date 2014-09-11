@@ -43,6 +43,8 @@ shareclock.directive('colorboximage', ["$compile", "$rootScope", require('./dire
 
 shareclock.directive('colorboxpdf', ["$compile", "$rootScope", require('./directives/ColorboxPDF')]);
 
+shareclock.directive('colorboxvideo', ["$compile", "$rootScope", require('./directives/ColorboxVideo')]);
+
 
 
 
